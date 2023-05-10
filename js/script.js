@@ -46,6 +46,7 @@ var quizQuestions = [
     var userInitials = document.getElementById("userInitials");
     var viewScore = document.getElementById("viewScore");
     var scoreList = document.getElementById("scoreList");
+    var finalScore = document.getElementById("finalScore");
 
     var scoreBin = "";
     var highScores = [];
@@ -201,26 +202,29 @@ function finishedPrompt() {
     quizInterface.style.display = "none";
     quizDone.style.display = "block";
     timerStart = false;
+    finalScore.textContent = userScore;
 }
 
 function saveHighscore() {
     // get value of input box
-    localStorage.setItem("initialscores", JSON.stringify(userInitials.value));
-    localStorage.setItem("userscores", JSON.stringify(userScore));
+    console.log(userInitials.value, userScore)
+    localStorage.setItem("initialscores", userInitials.value);
+    localStorage.setItem("userscores", userScore);
     // get saved scores from localstorage, or if not any, set to empty array
-    var highscores =
-      JSON.parse(window.localStorage.getItem("highScores")) || [];
-
+    var highscores = window.localStorage.getItem("userscores", "initialscores") || [];
     // format new score object for current user
    
 
     // save to localstorage by pushing to the newScore object to the highscores array
-    
-
     // call the next function that generates the HTML from the local storage data
   }
+initialButton.addEventListener("click", saveHighscore);
 
+initialButton.addEventListener("click", scoresPrompt);
 
+// function scoreRender() {
+//     highscores.value = scoreList;
+// }
 // function submitScore() {
 //     highScores.push(document.getElementById("userInitials").value + " " + userScore);
 //     scoresPrompt();
@@ -241,12 +245,12 @@ function scoresPrompt() {
     quizDone.style.display = "none";
     scoresPage.style.display = "block";
     
-    scoreBin= "";
+//     scoreBin= "";
     
-    for(let i=0; i<highScores.length; i++){
-        scoreBin = scoreBin + " " + highScores[i];
-   }
-   highScores.innerHTML = scoreList;
+//     for(let i=0; i<highScores.length; i++){
+//         scoreBin = scoreBin + " " + highScores[i];
+//    }
+   scoreList.textContent = highScores.value;
 }
 
 function clearScores() {
