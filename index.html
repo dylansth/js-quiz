@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Code Quiz</title>
+</head>
+
+<body>
+    <section id = "viewScore">
+        <input type="button" value="View Highscores" onclick="">
+    </section>
+
+    <section id= "timeLeft" style="display: none">
+        Time Remaining: <span id="timer"> </span>
+    </section>
+
+<!-- Welcome Page with Start Button -->
+    <section id=welcomePage>
+        <h1>
+            Coding Quiz Challenge
+        </h1>
+        <p>
+           Try to answer all of the code-related questions within the 75 second time limit. For each incorrect answer, the remaining time will be reduced by 10 seconds.
+        </p>
+        <button id="startButton">Start Quiz</button>
+    </section>
+
+    <section id="quizInterface" style="display: none">
+        <h2 id="questionHeading"></h2>
+            <ul id="answersList">
+                <button id="answerA"></button>
+                <button id="answerB"></button>
+                <button id="answerC"></button>
+                <button id="answerD"></button>
+            </ul>
+    </section>
+    
+    <section id="answerResult">
+    </section>
+
+    <section id="quizDone" style="display: none">
+        <h3> All done! </h3>
+        Your Final score is <var id="finalScore"></var>
+        <br>
+        Enter initials: <input type="text" id="userInitials">
+        <input type="button" value="Submit" id="initialButton" onclick="submitScore()">
+    </section>
+
+    <section id="scoresPage" style="display: none">
+        <h4> Highscores </h4>
+        <div id="scoreList"></div>
+        <input type="button" value="Go Back" id="gobackButton" onclick="goBack()">
+        <input type="button" value="Clear Highscores" id="clearscoreButton" onclick="clearScores()">
+    </section>
+</body>
+
+<script src="./js/script.js"></script>
+
+</html>
