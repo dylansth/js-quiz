@@ -26,7 +26,6 @@ var quizQuestions = [
         correctAnswer: 2
     }];
 
-//Time Interval for Time Left
     var secondsLeft = 75;
     var timerCountdown = true;
     var timerStart = false;
@@ -60,20 +59,20 @@ function quizTimer() {
     if (timerStart) 
     secondsLeft--;
     if(secondsLeft<= 0) {
-    // end_quiz();
+    // goback();
     secondsLeft = 0;    
     // clearInterval(countdownTimerInterval);
-    //alert user and stop quiz
     }
     timeEl.textContent = secondsLeft;
 }
 var countdownInterval = setInterval(quizTimer, 1000);
 
-//Add Event Listener for Start button
+
 startButton.addEventListener("click", function(){
     welcomePage.style.display = "none";
     quizInterface.style.display = "block";
     timeLeft.style.display = "block";
+    timerStart = true;
     questionPrompts();
 })
 
@@ -90,18 +89,15 @@ answerA.addEventListener('click', function(event) {
     correctAnswer = quizQuestions[rng].correctAnswer;
     console.log("corectAnswer " + correctAnswer);
     if (0 === correctAnswer) { 
-        // display message to user for 1  second stating if the answer is correct or incorrect
         answerResult.innerHTML = "Correct!";
         setTimeout(function() {
             answerResult.textContent;
             },
             1000
         );
-        // when user answers a question correctly, increase the score
         userScore++;  
     } else {
         secondsLeft -= 10;
-        // when user answers a question inccorrectly, subtract from the time
         answerResult.textContent = "Wrong!";
         setTimeout(function() {
             answerResult.textContent = "";
@@ -122,19 +118,16 @@ answerB.addEventListener('click', function(event) {
     correctAnswer = quizQuestions[rng].correctAnswer;
     console.log("corectAnswer " + correctAnswer);
     if (1 === correctAnswer) { 
-        // display message to user for 1  second stating if the answer is correct or incorrect
         answerResult.textContent = "Correct!";
         setTimeout(function() {
             answerResult.textContent = "";
             },
             1000
         );
-        // when user answers a question correctly, increase the score
         userScore++;   
 
     } else {
         secondsLeft -= 10;
-        // when user answers a question inccorrectly, subtract from the time
         answerResult.textContent = "Wrong!";
         setTimeout(function() {
             answerResult.textContent = "";
@@ -155,19 +148,15 @@ answerC.addEventListener('click', function(event) {
     correctAnswer = quizQuestions[rng].correctAnswer;
     console.log("corectAnswer " + correctAnswer);
     if (2 === correctAnswer) { 
-        // display message to user for 1  second stating if the answer is correct or incorrect
         answerResult.textContent = "Correct!";
         setTimeout(function() {
             answerResult.textContent = " ";
             },
             1000
         );
-        // when user answers a question correctly, increase the score
         userScore++;
-        // document.getElementById("userScore").innerHTML = userScore;
     } else {
         secondsLeft -= 10;
-        // when user answers a question inccorrectly, subtract from the time
         answerResult.textContent = "Wrong!";
         setTimeout(function() {
             answerResult.textContent = " ";
@@ -188,18 +177,15 @@ answerD.addEventListener('click', function(event) {
     correctAnswer = quizQuestions[rng].correctAnswer;
     console.log("corectAnswer " + correctAnswer);
     if (3 === correctAnswer) { 
-        // display message to user for 1  second stating if the answer is correct or incorrect
         answerResult.textContent = "Correct!";
         setTimeout(function() {
             answerResult.textContent;
             },
             1000
         );
-        // when user answers a question correctly, increase the score
         userScore++;    
     } else {
         secondsLeft -= 10;
-        // when user answers a question inccorrectly, subtract from the time
         answerResult.textContent = "Wrong!";
         setTimeout(function() {
             answerResult.textContent = "";
@@ -218,6 +204,7 @@ answerD.addEventListener('click', function(event) {
 function finishedPrompt() {
     quizInterface.style.display = "none";
     quizDone.style.display = "block";
+    timerStart = false;
 }
 
 function submitScore() {
@@ -232,6 +219,7 @@ localStorage.setItem("initials", JSON.stringify(userInitials));
 
 var highscoreInput = JSON.parse(localStorage.getItem("score"));
 var highscoreInput = JSON.parse(localStorage.getItem("initials"));
+
 }
 function scoresPrompt() {
     viewScore.style.display = "none";
