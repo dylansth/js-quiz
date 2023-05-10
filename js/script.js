@@ -53,15 +53,11 @@ var quizQuestions = [
     
     let rng = 0;
 
-// var countdownInterval = setInterval(quizTimer, 1000);
-
 function quizTimer() {
     if (timerStart) 
     secondsLeft--;
     if(secondsLeft<= 0) {
-    // goback();
     secondsLeft = 0;    
-    // clearInterval(countdownTimerInterval);
     }
     timeEl.textContent = secondsLeft;
 }
@@ -207,20 +203,38 @@ function finishedPrompt() {
     timerStart = false;
 }
 
-function submitScore() {
-    highScores.push(document.getElementById("userInitials").value + " " + userScore);
-    scoresPrompt();
-}
+function saveHighscore() {
+    // get value of input box
+    localStorage.setItem("initialscores", JSON.stringify(userInitials.value));
+    localStorage.setItem("userscores", JSON.stringify(userScore));
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highScores")) || [];
+
+    // format new score object for current user
+   
+
+    // save to localstorage by pushing to the newScore object to the highscores array
+    
+
+    // call the next function that generates the HTML from the local storage data
+  }
 
 
-function renderScores() {
-localStorage.setItem("score",JSON.stringify(answerResult));
-localStorage.setItem("initials", JSON.stringify(userInitials));
+// function submitScore() {
+//     highScores.push(document.getElementById("userInitials").value + " " + userScore);
+//     scoresPrompt();
+// }
 
-var highscoreInput = JSON.parse(localStorage.getItem("score"));
-var highscoreInput = JSON.parse(localStorage.getItem("initials"));
 
-}
+// function renderScores() {
+// localStorage.setItem("score",JSON.stringify(answerResult));
+// localStorage.setItem("initials", JSON.stringify(userInitials));
+
+// var highscoreInput = JSON.parse(localStorage.getItem("score"));
+// var highscoreInput = JSON.parse(localStorage.getItem("initials"));
+
+// }
 function scoresPrompt() {
     viewScore.style.display = "none";
     timeLeft.style.display = "none";
