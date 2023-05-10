@@ -263,4 +263,6 @@ function goBack() {
     timerCountdown = true;
     rng = 0;
     userScore = 0;
+
+    
 }
